@@ -103,11 +103,7 @@ st.markdown('<div class="section-title">Raw Data Table</div>', unsafe_allow_html
 
 all_cols = list(df.columns)
 selected_cols = st.multiselect("Columns", options=all_cols, default=all_cols)
-c_sort, c_order = st.columns([2, 1])
-with c_sort:  sort_col   = st.selectbox("Sort by", options=all_cols, index=0)
-with c_order: sort_order = st.radio("Order", ["Descending ↓", "Ascending ↑"], horizontal=True)
-
-disp = df[selected_cols].sort_values(by=sort_col, ascending=(sort_order=="Ascending ↑")).reset_index(drop=True)
+disp = df[selected_cols].reset_index(drop=True)
 st.dataframe(disp, use_container_width=True, height=380)
 st.caption(f"{len(disp):,} rows — times in Swiss time (UTC+2)")
 
